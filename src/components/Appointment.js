@@ -29,8 +29,8 @@ class Appointment extends React.Component {
           />
         ) : (
           <div className="appointment">
-            <h3>{appointment.patient}</h3>
-            <p>{appointment.doctor}</p>
+            <h3>{appointment.patient.name}</h3>
+            <p>{appointment.doctor.name}</p>
             <small>{appointment.date}</small>
             <small>{appointment.time}</small>
             <button onClick={() => handleDelete(appointment)}>X</button>

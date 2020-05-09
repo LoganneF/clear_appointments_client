@@ -10,13 +10,30 @@ class App extends React.Component {
   }
   componentDidMount() {
     this.getPatients()
+    this.getDoctors()
+    this.getAppointments()
   }
   getPatients () {
-    fetch('http://localhost:3000/patients')
+    fetch('/patients')
       .then(response => response.json())
-      .then(json => console.log(json))
+      .then(json => this.setState({patients: json}))
       .catch(error => console.error(error))
   }
+
+  getDoctors () {
+    fetch('/doctors')
+      .then(response => response.json())
+      .then(json => this.setState({doctors: json}))
+      .catch(error => console.error(error))
+  }
+
+  getAppointments () {
+    fetch('/appointments')
+      .then(response => response.json())
+      .then(json => this.setState({appointments: json}))
+      .catch(error => console.error(error))
+  }
+
   render() {
   return (
     <div className="App">

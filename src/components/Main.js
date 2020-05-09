@@ -19,7 +19,7 @@ function Main(props) {
         handleUpdate={handleUpdate}
       />
       <Appointments
-        doctors={doctors}
+        appointments={appointments}
         handleDelete={handleDelete}
         handleUpdate={handleUpdate}
       />
