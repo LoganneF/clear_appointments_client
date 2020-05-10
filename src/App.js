@@ -31,6 +31,40 @@ class App extends React.Component {
   .catch(error => console.log(error))
  }
 
+ handleDelete = (deletedPatient) => {
+  fetch(`http://localhost:3000/patients/${deletedPatient.id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((json) => {
+      const patients = this.state.patients.filter(
+        (patient) => patient.id !== deletedPatient.id
+      );
+      this.setState({ patients });
+    })
+    .catch((error) => console.log(error));
+};
+
+handleUpdate = (event, formInputs) => {
+  event.preventDefault();
+  console.log("in it to win it");
+  fetch(`http://localhost:3000/patients/${formInputs.id}`, {
+    body: JSON.stringify(formInputs),
+    method: "PUT",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((updatedPatient) => {
+      this.getPatients();
+    })
+    .catch((error) => console.log(error));
+};
+
  handleAdd = (event, formInputs) => {
   event.preventDefault()
   fetch('/appointments', {
@@ -50,6 +84,40 @@ class App extends React.Component {
 .catch(error => console.log(error))
 }
 
+handleDelete = (deletedAppt) => {
+  fetch(`http://localhost:3000/appointments/${deletedAppt.id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((json) => {
+      const appointments = this.state.appointments.filter(
+        (appointment) => appointment.id !== deletedAppt.id
+      );
+      this.setState({ appointments });
+    })
+    .catch((error) => console.log(error));
+};
+
+handleUpdate = (event, formInputs) => {
+  event.preventDefault();
+  console.log("in it to add it");
+  fetch(`http://localhost:3000/appointments/${formInputs.id}`, {
+    body: JSON.stringify(formInputs),
+    method: "PUT",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((updatedAppt) => {
+      this.getAppointments();
+    })
+    .catch((error) => console.log(error));
+};
+
 handleAdd = (event, formInputs) => {
   event.preventDefault()
   fetch('/doctors', {
@@ -68,6 +136,40 @@ handleAdd = (event, formInputs) => {
 })
 .catch(error => console.log(error))
 }
+
+handleDelete = (deletedDoc) => {
+  fetch(`http://localhost:3000/doctors/${deletedDoc.id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((json) => {
+      const doctors = this.state.doctors.filter(
+        (doctor) => doctor.id !== deletedDoc.id
+      );
+      this.setState({ doctors });
+    })
+    .catch((error) => console.log(error));
+};
+
+handleUpdate = (event, formInputs) => {
+  event.preventDefault();
+  console.log("in it to get it");
+  fetch(`http://localhost:3000/doctors/${formInputs.id}`, {
+    body: JSON.stringify(formInputs),
+    method: "PUT",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((updatedDoc) => {
+      this.getDoctors();
+    })
+    .catch((error) => console.log(error));
+};
 
   componentDidMount() {
     this.getPatients()
