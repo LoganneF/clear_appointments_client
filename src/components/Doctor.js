@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "./Form.js";
+import DoctorForm from "./DoctorForm.js";
 
 class Doctor extends React.Component {
   state = {

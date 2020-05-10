@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "./Form.js";
+import AppointmentForm from "./AppointmentForm.js";
 
 class Appointment extends React.Component {
   state = {
@@ -22,7 +22,7 @@ class Appointment extends React.Component {
     return (
       <>
         {this.state.formVisible ? (
-          <Form
+          <AppointmentForm
             appointment={appointment}
             handleSubmit={this.handleUpdate}
             toggleForm={this.toggleForm}

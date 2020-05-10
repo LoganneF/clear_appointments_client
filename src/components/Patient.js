@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "./Form.js";
+import PatientForm from "./PatientForm.js";
 
 class Patient extends React.Component {
   state = {
@@ -22,7 +22,7 @@ class Patient extends React.Component {
     return (
       <>
         {this.state.formVisible ? (
-          <Form
+          <PatientForm
             patient={patient}
             handleSubmit={this.handleUpdate}
             toggleForm={this.toggleForm}
