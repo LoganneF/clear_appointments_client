@@ -1,7 +1,8 @@
 import React from 'react';
-import Main from './components/Main'
-import NewAppt from './components/NewAppt'
+import Main from './components/Main';
+import NewAppt from './components/NewAppt';
 import NewPatient from './components/NewPatient';
+import NewDoc from './components/NewDoc'
 
 
 class App extends React.Component {
@@ -49,6 +50,25 @@ class App extends React.Component {
 .catch(error => console.log(error))
 }
 
+handleAdd = (event, formInputs) => {
+  event.preventDefault()
+  fetch('/doctors', {
+    body: JSON.stringify(formInputs),
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    }
+})
+.then(createdDoc => createdDoc.json())
+.then(jsonedDoc => {
+  this.setState({
+    doctors: [jsonedDoc, ...this.state.doctors]
+  })
+})
+.catch(error => console.log(error))
+}
+
   componentDidMount() {
     this.getPatients()
     this.getDoctors()
@@ -86,6 +106,7 @@ class App extends React.Component {
         />
         <NewPatient handleSubmit={this.handleAdd}/>
         <NewAppt handleSubmit={this.handleAdd}/>
+        <NewDoc handleSubmit={this.handleAdd}/>
       </div>
     </div>
   );
