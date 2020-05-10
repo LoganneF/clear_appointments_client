@@ -22,7 +22,7 @@ class Doctor extends React.Component {
     return (
       <>
         {this.state.formVisible ? (
-          <Form
+          <DoctorForm
             doctor={doctor}
             handleSubmit={this.handleUpdate}
             toggleForm={this.toggleForm}

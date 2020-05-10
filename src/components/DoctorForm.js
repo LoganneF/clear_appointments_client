@@ -1,12 +1,11 @@
 import React from "react";
 import Input from "./Input.js";
 
-class PatientForm extends React.Component {
+class DoctorForm extends React.Component {
   state = {
     name: "",
-    dob: "",
+    specialty: "",
     insurance: "",
-    allergies: "",
   };
 
   handleChange = (event) => {
@@ -17,27 +16,25 @@ class PatientForm extends React.Component {
     console.log("running");
     event.preventDefault();
 
-    const { name, dob, insurance, allergies } = this.state;
-    const patient = {
+    const { name, specialty, insurance } = this.state;
+    const doctor = {
       name: name,
-      dob: dob,
-      insurance: insurance,
-      allergies: allergies,
+      specialty: specialty,
+      insurance: insurance
     };
 
-    if (this.props.patient) patient.id = this.props.patient.id;
+    if (this.props.doctor) doctor.id = this.props.doctor.id;
 
-    this.props.handleSubmit(event, patient);
+    this.props.handleSubmit(event, doctor);
   };
 
   componentDidMount() {
-    if (this.props.patient) {
-      const { name, dob, insurance, allergies, id } = this.props.patient;
+    if (this.props.doctor) {
+      const { name, specialty, insurance, id } = this.props.doctor;
       this.setState({
         name: name || "",
-        dob: dob || "",
+        specialty: specialty || "",
         insurance: insurance || "",
-        allergies: allergies || "",
         id: id || "",
       });
     }
@@ -49,42 +46,34 @@ class PatientForm extends React.Component {
         <Input
           handleChange={this.handleChange}
           name={"name"}
-          placeholder={"Patient Name"}
+          placeholder={"Doctor Name"}
           type={"text"}
           value={this.state.name}
           id={"name"}
         />
         <Input
           handleChange={this.handleChange}
-          name={"dob"}
-          placeholder={"Patient Date of Birth"}
+          name={"specialty"}
+          placeholder={"Medical Specialty"}
           type={"text"}
-          value={this.state.dob}
-          id={"dob"}
+          value={this.state.specialty}
+          id={"specialty"}
         />
         <Input
           handleChange={this.handleChange}
           name={"insurance"}
-          placeholder={"Patient Insurance Provider"}
+          placeholder={"Accepted Insurance Provider"}
           type={"text"}
           value={this.state.insurance}
           id={"insurance"}
         />
-        <Input
-          handleChange={this.handleChange}
-          name={"allergies"}
-          placeholder={"Known Patient Allergies"}
-          type={"text"}
-          value={this.state.allergies}
-          id={"allergies"}
-        />
         <input
           type="submit"
-          value={this.props.patient ? "update this patient" : "add a patient"}
+          value={this.props.doctor ? "update this doctor" : "add a doctor"}
         />
       </form>
     );
   }
 }
 
-export default PatientForm;
+export default DoctorForm;
