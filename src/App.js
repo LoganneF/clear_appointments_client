@@ -203,8 +203,14 @@ handleUpdate = (event, formInputs) => {
       <div className='container'>
         <Main 
         patients={this.state.patients}
+          handleDelete={this.handleDelete}
+          handleUpdate={this.handleUpdate}
         doctors={this.state.doctors}
+          handleDelete={this.handleDelete}
+          handleUpdate={this.handleUpdate}
         appointments={this.state.appointments}
+          handleDelete={this.handleDelete}
+          handleUpdate={this.handleUpdate}
         />
         <NewPatient handleSubmit={this.handleAdd}/>
         <NewAppt handleSubmit={this.handleAdd}/>
